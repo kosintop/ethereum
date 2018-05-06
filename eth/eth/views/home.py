@@ -1,6 +1,6 @@
 from django.template.response import TemplateResponse
 
-from eth.eth.models import User, Vendor, Reward
+from ..models import User, Vendor, Reward
 from .. import API
 
 

@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from eth.eth import API
-from eth.eth.views import home
+from . import API
+from .views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),

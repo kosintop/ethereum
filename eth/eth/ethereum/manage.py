@@ -1,8 +1,8 @@
 from web3 import Web3, HTTPProvider
 from solc import compile_source
 
-from eth.models import Vendor, User
-from eth.settings import blockchain_url
+from eth.eth.models import Vendor, User
+from eth.eth.settings import blockchain_url
 from .loyalty_contract import contract_source_code
 import uuid
 

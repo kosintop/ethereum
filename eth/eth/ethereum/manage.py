@@ -1,14 +1,13 @@
 from web3 import Web3, HTTPProvider
-from solc import compile_source
 
+from .compiled_contract import compiled_contract
 from ..models import Vendor, User
 from ..settings import blockchain_url
-from .loyalty_contract import contract_source_code
 import uuid
 
 
 w3 = Web3(HTTPProvider(endpoint_uri=blockchain_url))
-compiled_sol = compile_source(contract_source_code)
+compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']
 
 

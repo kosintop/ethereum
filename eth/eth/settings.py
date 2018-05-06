@@ -29,7 +29,7 @@ SECRET_KEY = 'u=1uouga9)s391=gp0dip+fvql4(l(f6%p5b=r1je&pempckw+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['can-ethereum.herokuapp.com']
 
 
 # Application definition

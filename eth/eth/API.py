@@ -1,9 +1,9 @@
 from django.http import JsonResponse,HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST,require_GET
+from django.views.decorators.http import require_POST
 
-from . import settings
-from .models import Vendor, User, Reward
+from eth import settings
+from eth.models import Vendor, User, Reward
 from .ethereum import manage
 
 

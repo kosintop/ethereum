@@ -1,12 +1,8 @@
-import json
-import web3
-
-from web3 import Web3, HTTPProvider, TestRPCProvider
+from web3 import Web3, HTTPProvider
 from solc import compile_source
-from web3.contract import ConciseContract
 
-from ..models import Vendor, User
-from ..settings import blockchain_url
+from eth.models import Vendor, User
+from eth.settings import blockchain_url
 from .loyalty_contract import contract_source_code
 import uuid
 

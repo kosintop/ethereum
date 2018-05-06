@@ -1,1 +1,1 @@
-web: env PYTHONPATH=$PYTHONPATH:$PWD/asdf  gunicorn eth.eth.wsgi:application
+web: gunicorn eth.eth.wsgi:application

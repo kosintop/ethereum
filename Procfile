@@ -1,1 +1,1 @@
-web: gunicorn eth.wsgi:application
+web: gunicorn eth.eth.wsgi:application

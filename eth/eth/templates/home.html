@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .container{
+            width:1080px;
+            margin: 0 auto;
+        }
+
+        .block{
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .pull-left{
+            float:left;
+        }
+
+        .pull-right{
+            float:right;
+            text-align:right;
+        }
+
+        .inline-block{
+            display:inline-block;
+        }
+
+        .block-title{
+            text-align:center;
+        }
+
+        form:first-of-type{
+            margin-top: 20px;
+        }
+
+        form{
+        margin-bottom:5px;
+
+    </style>
+    <script>
+        function onSubmit(){
+            setTimeout(function(){
+                location.reload()
+            },500)
+        }
+    </script>
+</head>
+<body>
+    <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <div class="container">
+
+        <div class="block">
+            <div>
+                <div class="block-title pull-left"><h1>User</h1></div>
+                <form class="pull-right" method="POST" action="{% url 'create_user' %}">
+                    <input type="submit" value="Create User"/>
+                </form>
+            </div>
+            <table style="width:100%" border="1">
+                <thead>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Wallet Address</th>
+                </thead>
+                <tbody>
+                {% for user in user_list %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.wallet_address }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="block">
+            <div>
+                <div class="block-title pull-left"><h1>Vendor</h1></div>
+                <form class="pull-right" method="POST" action="{% url 'create_vendor' %}">
+                    <input type="submit" value="Create Vendor"/>
+                </form>
+            </div>
+            <table style="width:100%" border="1">
+                <thead>
+                    <th>ID</th>
+                    <th>Vendor</th>
+                    <th>Contract Address</th>
+                </thead>
+                <tbody>
+                {% for vendor in vendor_list %}
+                    <tr>
+                        <td>{{ vendor.id }}</td>
+                        <td>{{ vendor.name }}</td>
+                        <td>{{ vendor.contract_address }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="block">
+            <div>
+                <div class="block-title pull-left"><h1>Points</h1></div>
+                <div class="pull-right">
+                    <form method="POST" action="{% url 'add_point' %}" >
+                        <input type="text" name="user_id" placeholder="user_id"/>
+                        <input type="text" name="vendor_id" placeholder="vendor_id"/>
+                        <input type="text" name="point" placeholder="point"/>
+                        <input type="submit" value="Add Points"/>
+                    </form>
+                    <form method="POST" action="{% url 'transfer_point' %}" >
+                        <input type="text" name="sender_id" placeholder="sender_id"/>
+                        <input type="text" name="receiver_id" placeholder="receiver_id"/>
+                        <input type="text" name="vendor_id" placeholder="vendor_id"/>
+                        <input type="text" name="point" placeholder="point"/>
+                        <input type="submit" value="Transfer Points"/>
+                    </form>
+                </div>
+            </div>
+            <table style="width:100%" border="1">
+                <thead>
+                    <th>User ID</th>
+                    <th>Vendor ID</th>
+                    <th>Point Balance</th>
+                </thead>
+                <tbody>
+                {% for user_data in point_list %}
+                    {% for point_data in user_data.point_list %}
+                    <tr>
+                        <td>
+                            {% if forloop.first %}
+                                {{ user_data.user_id }}
+                            {% endif %}
+                        </td>
+                        <td>{{ point_data.vendor_id }}</td>
+                        <td>{{ point_data.point }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="block">
+            <div>
+                <div class="block-title pull-left"><h1>Rewards</h1></div>
+                <div class="pull-right">
+                    <form method="POST" action="{% url 'add_reward' %}">
+                        <input type="text" name="vendor_id" placeholder="vendor_id"/>
+                        <input type="text" name="point" placeholder="point"/>
+                        <input type="submit" value="Add Rewards"/>
+                    </form>
+                    <form method="POST" action="{% url 'exchange_reward' %}">
+                        <input type="text" name="user_id" placeholder="user_id"/>
+                        <input type="text" name="reward_id" placeholder="reward_id"/>
+                        <input type="submit" value="Exchange Reward"/>
+                    </form>
+                </div>
+
+            </div>
+            <table style="width:100%" border="1">
+                <thead>
+                    <th>Vendor ID</th>
+                    <th>Reward ID</th>
+                    <th>Reward Name</th>
+                    <th>Point</th>
+                </thead>
+                <tbody>
+                {% for vendor_data in reward_list %}
+                    {% for reward_data in vendor_data.reward_list %}
+                    <tr>
+                        <td>
+                            {% if forloop.first %}
+                                {{ vendor_data.vendor_id }}
+                            {% endif %}
+                        </td>
+                        <td>{{ reward_data.id }}</td>
+                        <td>{{ reward_data.name }}</td>
+                        <td>{{ reward_data.point }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 os.environ["SOLC_BINARY"] = os.path.join(BASE_DIR, 'solc.exe')
-blockchain_url = 'http://127.0.0.1:7545'
+blockchain_url = 'http://52.74.205.167:8080/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
@@ -30,7 +30,7 @@ SECRET_KEY = 'u=1uouga9)s391=gp0dip+fvql4(l(f6%p5b=r1je&pempckw+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['can-ethereum.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','can-ethereum.herokuapp.com']
 
 
 # Application definition
@@ -84,9 +84,16 @@ DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
-if 'HEROKU' in os.environ:
-
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ethereum',
+#         'USER': 'admin',
+#         'PASSWORD': 'admin',
+#         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

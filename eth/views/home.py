@@ -2,7 +2,7 @@ from django.template.response import TemplateResponse
 
 from ..models import User, Vendor, Reward
 from .. import API
-
+from ..ethereum.manage import get_master_wallet_info
 
 def index(request):
     user_list = User.objects.all()
@@ -24,6 +24,7 @@ def index(request):
         request=request,
         template='../templates/home.html',
         context={
+            'master_wallet':get_master_wallet_info(),
             'user_list':user_list,
             'vendor_list':vendor_list,
             'point_list':points_list,

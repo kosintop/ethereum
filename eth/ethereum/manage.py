@@ -11,6 +11,13 @@ compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']
 
 
+def get_master_wallet_info():
+    return {
+        'wallet_address':w3.eth.accounts[0],
+        'ether':w3.eth.getBalance(w3.eth.accounts[0])
+    }
+
+
 def random_string():
     return uuid.uuid4().hex[:6].upper()
 

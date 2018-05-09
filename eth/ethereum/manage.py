@@ -13,10 +13,14 @@ contract_interface = compiled_sol['<stdin>:Loyalty']
 
 
 def get_master_wallet_info():
-    return {
+    print('getting master wallet info')
+    master_wallet = {
         'wallet_address':w3.eth.accounts[0],
         'ether':w3.eth.getBalance(w3.eth.accounts[0])
     }
+    print('success')
+    print(master_wallet)
+    return master_wallet
 
 
 def random_string():

@@ -7,6 +7,7 @@ import uuid
 
 print('connecting to blockchain blockchain network')
 w3 = Web3(HTTPProvider(endpoint_uri=blockchain_url))
+print(w3.isConnected())
 print('successfully connected to blockchain network')
 compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']
@@ -14,6 +15,8 @@ contract_interface = compiled_sol['<stdin>:Loyalty']
 
 def get_master_wallet_info():
     print('getting master wallet info')
+    print(w3.eth)
+    print(w3.eth.accounts)
     master_wallet = {
         'wallet_address':w3.eth.accounts[0],
         'ether':w3.eth.getBalance(w3.eth.accounts[0])

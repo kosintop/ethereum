@@ -5,8 +5,9 @@ from ..models import Vendor, User
 from ..settings import blockchain_url
 import uuid
 
-
+print('connecting to blockchain blockchain network')
 w3 = Web3(HTTPProvider(endpoint_uri=blockchain_url))
+print('successfully connected to blockchain network')
 compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']
 

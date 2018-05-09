@@ -7,7 +7,9 @@ import uuid
 
 print('connecting to blockchain blockchain network')
 w3 = Web3(HTTPProvider(endpoint_uri=blockchain_url))
-print(w3.isConnected())
+if w3.isConnected() is False:
+    print('cant connect')
+    raise Exception('Cant connect to W3')
 print('successfully connected to blockchain network')
 compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']

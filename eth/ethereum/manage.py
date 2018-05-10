@@ -1,3 +1,5 @@
+import time
+
 from web3 import Web3, HTTPProvider
 
 from .compiled_contract import compiled_contract
@@ -87,7 +89,10 @@ def create_contract(vendor_name):
     tx_hash = contract.deploy(args=[vendor_name], transaction={'from': w3.eth.accounts[0]})
 
     # Get tx receipt to get contract address
-    tx_receipt = w3.eth.getTransactionReceipt(tx_hash)
+    tx_receipt = None
+    while tx_receipt is None:
+        tx_receipt = w3.eth.getTransactionReceipt(tx_hash)
+        time.sleep(1)
     contract_address = tx_receipt['contractAddress']
 
     return contract_address

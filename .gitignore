@@ -4,3 +4,4 @@ env/
 *.pyc
 blockchain/data-mine/
 blockchain/data/
+blockchain/

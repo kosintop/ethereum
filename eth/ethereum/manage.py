@@ -20,7 +20,7 @@ contract_interface = compiled_sol['<stdin>:Loyalty']
 def unlock_account(func):
     def inner(*args, **kwargs):
         w3.personal.unlockAccount(w3.personal.listAccounts[0], "admin", 15000)
-        func(*args,**kwargs)
+        return func(*args,**kwargs)
     return inner
 
 

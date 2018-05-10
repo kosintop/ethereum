@@ -17,6 +17,13 @@ compiled_sol = compiled_contract
 contract_interface = compiled_sol['<stdin>:Loyalty']
 
 
+def unlock_account(func):
+    def inner():
+        w3.personal.unlockAccount(w3.personal.listAccounts[0], "admin", 15000)
+        func()
+    return inner
+
+
 def get_master_wallet_info():
     print('getting master wallet info')
     print(w3.eth)
@@ -41,6 +48,7 @@ def create_wallet():
     return wallet_address
 
 
+@unlock_account
 def add_point(user_id,vendor_id,point):
     user = User.objects.get(id=user_id)
     vendor = Vendor.objects.get(id=vendor_id)
@@ -53,6 +61,7 @@ def get_all_account():
     return w3.eth.accounts
 
 
+@unlock_account
 def exchange_reward(user_id, reward_id,vendor_id,point):
     user = User.objects.get(id=user_id)
     vendor = Vendor.objects.get(id=vendor_id)
@@ -60,6 +69,7 @@ def exchange_reward(user_id, reward_id,vendor_id,point):
     contract.functions.ExchangeReward(user.wallet_address,int(reward_id), int(point)).transact(transaction={'from': w3.eth.accounts[0]})
 
 
+@unlock_account
 def transfer_point(sender_id,receiver_id,vendor_id,point):
     sender = User.objects.get(id=sender_id)
     receiver = User.objects.get(id=receiver_id)
@@ -80,6 +90,7 @@ def query_vendors_points_by_user_id(user_id,vendor_id_list):
     return result
 
 
+@unlock_account
 def create_contract(vendor_name):
 
     # Instantiate and deploy contract

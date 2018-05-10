@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 os.environ["SOLC_BINARY"] = os.path.join(BASE_DIR, 'solc.exe')
-blockchain_url = 'http://122.155.162.23:135'
+blockchain_url = 'http://122.155.162.23:8545'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'

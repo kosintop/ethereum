@@ -17,7 +17,7 @@ def create_vendor(request):
         vendor_name = request.POST['vendor_name']
 
     new_vendor.name = vendor_name
-    new_vendor.contract_address = manage.create_contract(vendor_name)
+    new_vendor.contract_address,tmp = manage.create_contract(vendor_name)
     new_vendor.save()
     return JsonResponse({'status':True, 'vendor_id':new_vendor.id})
 

@@ -106,7 +106,7 @@ def create_contract(vendor_name):
         time.sleep(1)
     contract_address = tx_receipt['contractAddress']
 
-    return contract_address
+    return contract_address,tx_receipt
 
 
 def test():

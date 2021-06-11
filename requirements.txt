@@ -33,7 +33,7 @@ slim==0.1
 toolz==0.9.0
 urllib3==1.22
 web3==4.2.0
-websockets==4.0.1
+websockets==9.1
 dj_database_url==0.5.0
 psycopg2==2.7.4
 gunicorn
